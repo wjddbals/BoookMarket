@@ -15,4 +15,6 @@
     <context:component-scan
             base-package="jiho.spring.mvc.book.boookmarket" />
 <mvc:annotation-driven enable-matrix-variables="true"/>
+
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
 </beans>
