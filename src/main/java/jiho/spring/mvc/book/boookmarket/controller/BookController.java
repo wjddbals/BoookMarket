@@ -29,20 +29,13 @@ public class BookController {
     }
 
     @GetMapping("/all")
-    public ModelAndView requestAllBooks(){
-        ModelAndView modelAndView=new ModelAndView();
-        List<Book> list =bookService.getAllBookList();
-        modelAndView.addObject("bookList",list);
-        modelAndView.setViewName("books");
-        return modelAndView;
+    public String requestAllBooks(Model model){
+        List<Book> list=bookService.getAllBookList();
+        model.addAttribute("bookList",list);
+        return "books";
+
     }
 
-    @GetMapping("/{category}")
-    public String requestBookByCategory(@PathVariable("category") String bookCategory,
-                                        Model model) {
-        List<Book> booksByCategory=bookService.getBookListByCategory(bookCategory);
-        model.addAttribute("bookList",booksByCategory);
-        return "books";
-    }
+
 
 }
