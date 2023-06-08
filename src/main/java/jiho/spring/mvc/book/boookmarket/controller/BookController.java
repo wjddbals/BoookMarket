@@ -28,14 +28,15 @@ public class BookController {
 
     }
 
+
     @GetMapping("/all")
-    public String requestAllBooks(Model model){
-        List<Book> list=bookService.getAllBookList();
-        model.addAttribute("bookList",list);
-        return "books";
-
+    public ModelAndView requestAllBooks(){
+        ModelAndView modelAndView=new ModelAndView();
+        List<Book> list =bookService.getAllBookList();
+        modelAndView.addObject("bookList",list);
+        modelAndView.setViewName("books");
+        return modelAndView;
     }
-
 
 
 }
