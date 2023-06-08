@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -15,12 +16,12 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/books")
+
 public class BookController {
     @Autowired
     private BookService bookService;
 
-    @GetMapping
+  @RequestMapping(value = "/books",method = RequestMethod.GET)
     public String requestBookList(Model model){
         List<Book> list=bookService.getAllBookList();
         model.addAttribute("bookList",list);
@@ -28,21 +29,5 @@ public class BookController {
 
     }
 
-    @GetMapping("/all")
-    public ModelAndView requestAllBooks(){
-        ModelAndView modelAndView=new ModelAndView();
-        List<Book> list =bookService.getAllBookList();
-        modelAndView.addObject("bookList",list);
-        modelAndView.setViewName("books");
-        return modelAndView;
-    }
-
-    @GetMapping("/{category}")
-    public String requestBookByCategory(@PathVariable("category") String bookCategory,
-                                        Model model) {
-        List<Book> booksByCategory=bookService.getBookListByCategory(bookCategory);
-        model.addAttribute("bookList",booksByCategory);
-        return "books";
-    }
 
 }
