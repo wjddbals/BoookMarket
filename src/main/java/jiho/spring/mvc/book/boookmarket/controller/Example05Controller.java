@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/home")
 public class Example05Controller {
 
-    @GetMapping("/exam05")
-    public String requestMethod(Model model){
-        model.addAttribute("data","Model 예제입니다");
-        model.addAttribute("data2","웹요청 URL은 /home/exam05입니다");
-        return "webpage05";
+    @GetMapping("/exam05/{bookId}")
+    public String requestMethod(
+            @MatrixVariable(required = false,defaultValue = "길벗") String q,
+            Model model){
+        model.addAttribute("출판사 :" +q);
+        model.addAttribute("data","출판사 :" +q);
+        return "webpage06";
     }
+
 
 }
