@@ -13,6 +13,6 @@
     </bean>
 
     <context:component-scan
-            base-package="jiho.bookmarket.bookmarket" />
+            base-package="jiho.spring.mvc.book.boookmarket" />
 <mvc:annotation-driven enable-matrix-variables="true"/>
 </beans>
