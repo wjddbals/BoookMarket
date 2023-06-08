@@ -11,11 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/home")
 public class Example04Controller {
 
-    @GetMapping("/exam04")
-    public void requestMethod(){
-        System.out.println("@ReqistMapping예제입니다");
-        System.out.println("웹 요청 URL은/home /exam04입니다");
 
+    @GetMapping("/exam04/{bookId}/category/{category}")
+    public String requestMethod(
+            @MatrixVariable(value = "publisher",pathVar = "bookId") String q1,
+            @MatrixVariable(value = "publisher",pathVar = "category") String q2,
+            Model model){
+        System.out.println("출판사1:" +q1);
+        System.out.println("출판사1:" +q2);
+        model.addAttribute("data","출판사1 :" +q1 +"<br>" +"출판사2:" +q2);
+        return "webpage06";
     }
 
 }
