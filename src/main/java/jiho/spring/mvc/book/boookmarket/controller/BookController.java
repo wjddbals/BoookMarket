@@ -38,5 +38,12 @@ public class BookController {
         return modelAndView;
     }
 
+    @GetMapping("/{category}")
+    public String requestBooksByCategory(@PathVariable("category") String bookCategory,
+                                         Model model) {
+        List<Book> booksByCategory=bookService.getBookListByCategory(bookCategory);
+        model.addAttribute("bookLIst",booksByCategory);
+        return "books";
+    }
 
 }
