@@ -30,8 +30,8 @@ public class Example06Controller {
         System.out.println(matrixVars2);
 
         model.addAttribute("data",matrixVars +"<br>" + matrixVars2);
-
         return "webpage06";
+
 
     }
 
