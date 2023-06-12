@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.Set;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 //
 
 
@@ -75,6 +77,11 @@ public class BookController {
     @ModelAttribute//메서드 수준의 @ModelAttribute를 선언
     public void addAttributes(Model model) {
         model.addAttribute("addTitle","신규 도서 등록");//모델 속성이름addTitle에 신규 도서 등록을 저장한다
+    }
+    @InitBinder
+    public void initBinder(WebDataBinder binder){
+        binder.setAllowedFields("bookId","name","unitPrice","author","description",
+                "publisher","category","unitsInStock","totalPages","releaseDate","condition");
     }
 
 }
