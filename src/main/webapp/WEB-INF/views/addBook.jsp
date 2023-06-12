@@ -25,7 +25,7 @@
 
   <form:form modelAttribute = "NewBook" class="form-horizontal" >
     <fieldset>
-      <legend>${addTitle}</legend>
+      <legend>${addTitle}</legend>//컨트롤러에서 전달된 모델속성이름addTitle값을 출력한다
       <div class="form-group row">
         <label class="col-sm-2 control-label">도서 ID</label>
         <div class="col-sm-3">
