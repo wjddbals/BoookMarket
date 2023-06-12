@@ -106,4 +106,9 @@ public class BookRepositoryImpl implements  BookRepository{
             throw new IllegalArgumentException("도서 ID가 "+bookId + "인 해당 도서를 찾을 수 없습니다.");
         return bookInfo;
     }
+
+    @Override
+    public void setNewBook(Book book) {//신규도서 정보를 저장하는 메서드이다
+        listOfBooks.add(book);//신규도서 정보를 listOfBooks에 추가로저장한다
+    }
 }
