@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 //
 
 
@@ -60,8 +62,19 @@ public class BookController {
         model.addAttribute("book",bookById);
         return "book";
     }
-    @GetMapping("/add")
-    public String requestAddBookForm(Book book){
-        return "addBook";
+    @GetMapping("/add")//@RequestMapping("/add")와 같다
+    public String requestAddBookForm(@ModelAttribute("NewBook") Book book){
+        return "addBook";//@ModeAttribute를 이용하여 커맨드 객체이름을 NewBook으로 수정한다
     }
+    @PostMapping("/add")
+    public String submitAddNewBook(@ModelAttribute("NewBook") Book book){//@ModelAttribute를 이용하여 커맨드 객체이름을 NewBook으로 수정한다
+        bookService.setNewBook(book);//신규 도서 정보를 저장하려고 서빗 객체의 setNewBook()메서드를 호출한다
+        return "redirect:books";//웹요청URL을 강제로/books로 이동시커 @RequestMapping("/books)에 매핑한다
+    }
+    //도서등록 페이지에 제목을 출력하려면 BookController클래스에 메서드 수준의 @ModelAttribute를 선언한 addAttributes()메서드를 추가해야 한다
+    @ModelAttribute//메서드 수준의 @ModelAttribute를 선언
+    public void addAttributes(Model model) {
+        model.addAttribute("addTitle","신규 도서 등록");//모델 속성이름addTitle에 신규 도서 등록을 저장한다
+    }
+
 }
